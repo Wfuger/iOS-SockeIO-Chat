@@ -34,11 +34,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleKeyboardDidShowNotification:", name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleKeyboardDidHideNotification:", name: UIKeyboardDidHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.handleKeyboardDidShowNotification(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.handleKeyboardDidHideNotification(_:)), name: UIKeyboardDidHideNotification, object: nil)
         
         
-        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
         swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Down
         swipeGestureRecognizer.delegate = self
         view.addGestureRecognizer(swipeGestureRecognizer)
@@ -149,7 +149,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.lblNewsBanner.alpha = 1.0
             
             }) { (finished) -> Void in
-                self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hideBannerLabel", userInfo: nil, repeats: false)
+                self.bannerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(ChatViewController.hideBannerLabel), userInfo: nil, repeats: false)
         }
     }
     
